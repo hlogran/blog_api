@@ -24,8 +24,9 @@ test('Users can list posts', async ()=>{
 })
 
 test('Users can search posts by text', async ()=>{
-  const response = await request(app).get('/search/posts/econd')
+  const response = await request(app).get('/posts')
     .send()
+    .query({term: 'econd'})
     .expect(200);
   expect(response.body.length).toBe(1);
   expect(response.body[0]._id.toString()).toBe(postTwo._id.toString());

@@ -8,8 +8,8 @@ const router = new express.Router();
  **********************************************/
 //create new user (sign up)
 router.post('/users', async (req, res) => {
-  const user = new User(req.body);
   try{
+    const user = new User(req.body);
     await user.save();
     const token = await user.generateAuthToken();
     res.status(201).send({user, token});
@@ -20,12 +20,11 @@ router.post('/users', async (req, res) => {
 
 //user login
 router.post('/users/login', async (req, res) => {
-  const {
-    email,
-    password
-  } = req.body;
-
   try{
+    const {
+      email,
+      password
+    } = req.body;
     const user = await User.findByCredentials(email, password);
     const token = await user.generateAuthToken();
     res.status(201).send({user, token});
@@ -68,13 +67,13 @@ router.get('/users/me', authentication, async (req, res) => {
 
 //update current user
 router.patch('/users/me', authentication, async (req, res) => {
-  const updates = Object.keys(req.body);
-  const validFields = ['name', 'email', 'password'];
-  if(updates.some(x => validFields.indexOf(x)===-1)){
-    res.status(400).send('invalid operation');
-    return;
-  }
   try{
+    const updates = Object.keys(req.body);
+    const validFields = ['name', 'email', 'password'];
+    if(updates.some(x => validFields.indexOf(x)===-1)){
+      res.status(400).send('invalid operation');
+      return;
+    }
     const user = req.user;
     if(!user){
       res.status(404).send('user not found');
