@@ -1,5 +1,5 @@
 Node.JS Rest API for a blogging platfotm.
-I contains user's managment methods as well as content creation methods for the blog posts.
+It contains user's managment methods as well as content creation methods for the blog posts.
 
 Technologies:
 ======
