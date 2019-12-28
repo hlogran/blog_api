@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
-    "test": "env-cmd -f ./config/test.env jest --watchAll --runInBand"
+    "dev": "nodemon src/index.js",
+    "test": "jest --watchAll --runInBand"
   },
   "repository": {
     "type": "git",

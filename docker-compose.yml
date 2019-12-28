@@ -1,0 +1,24 @@
+version: "2.4"
+
+services:
+  blog_api:
+    depends_on:
+      - mongo
+    build: .
+    ports: 
+      - 3000:3000
+    volumes:
+      - .:/node/app
+      - /node/app/node_modules
+    environment:
+      - PORT=3000
+      - MONGO_URL=mongodb://mongo:27017/blog
+      - AUTH_SECRET_KEY=my_jwt_secret_key
+  mongo:
+    image: "mongo:4.0-xenial"
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+volumes:
+  mongodata:
